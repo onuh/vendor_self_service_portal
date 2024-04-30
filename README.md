@@ -44,4 +44,7 @@ Ensure that all dependency modules are available on your odoo system. Then clone
 	- Procurement team member login to backend to see adjustment request in the `Adjustment Request` Menu from sales app, click on sale order to open form view to see details that needs to be adjusted and proceed to make the adjustment. ![Backend Adjustment Request](images/Screenshot_from_2024-04-29_20-54-10.png)
 
 	# Upcoming Product Demand Forcast
-	- click on first checkbox to select all forcast displayed on page or click on any of the checkbox for any product, then select a format to download, then click on `Generate Report` button ![Forcast View](images/Screenshot_from_2024-04-29_21-13-58.png) ![Report Generation](images/Screenshot_from_2024-04-29_21-14-18.png) ![PDF Report](images/Screenshot_from_2024-04-29_21-14-58.png) ![Excel Report](images/Screenshot_from_2024-04-29_21-15-36.png)
+	- click on first checkbox to select all forcast displayed on page or click on any of the checkbox for any product, then select a format to download, then click on `Generate Report` button ![Forcast View](images/Screenshot_from_2024-04-29_21-13-58.png)
+	- Generate Report button with report format appears ![Report Generation](images/Screenshot_from_2024-04-29_21-14-18.png)
+	- PDF Report generated ![PDF Report](images/Screenshot_from_2024-04-29_21-14-58.png)
+	- Excel Report Generated ![Excel Report](images/Screenshot_from_2024-04-29_21-15-36.png)
