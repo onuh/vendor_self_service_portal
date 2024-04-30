@@ -1,0 +1,179 @@
+<odoo>
+
+  <!--  inherit portal dropdown and include Menu-->
+    <template id="portal_my_home_order_adjust" name="Request Order Adjustment" inherit_id="portal.portal_my_home" customize_show="True" priority="50">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Order Adjustment</t>
+                <t t-set="url" t-value="'/my/order_adjustment'"/>
+                <t t-set="placeholder_count" t-value="'order_adjust'"/>
+            </t>
+            <t t-call="portal.portal_docs_entry">
+              <t t-set="title">Product Forecasts</t>
+              <t t-set="url" t-value="'/my/product_forcast'"/>
+              <t t-set="placeholder_count" t-value="'product_forcast'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_menu_order_adjust" name="Portal layout : Order Adjustment Request" inherit_id="portal.portal_breadcrumbs" priority="50">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'order_adjust_request'" t-attf-class="breadcrumb-item #{'active ' if not order_adjust_request else ''}">
+                <a t-if="order_adjust_request" t-attf-href="/my/order_adjustment">Order Adjustment Request</a>
+                <t t-else="">Order Adjustment Request</t>
+            </li>
+            <li t-if="order_adjust_request" class="breadcrumb-item active">
+                <t t-esc="'Order Adjustment Request'" t-if="order_adjust_request"/>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_menu_product_forcast" name="Portal layout : Product Forecast" inherit_id="portal.portal_breadcrumbs" priority="50">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'product_forcast'" t-attf-class="breadcrumb-item #{'active ' if not product_forcast else ''}">
+                <a t-if="product_forcast" t-attf-href="/my/order_adjustment">Vendor Forcasts</a>
+                <t t-else="">Vendor Forcasts</t>
+            </li>
+            <li t-if="product_forcast" class="breadcrumb-item active">
+                <t t-esc="'Vendor Forcasts'" t-if="product_forcast"/>
+            </li>
+        </xpath>
+    </template>
+
+
+    <template id="order_adjustment_step_form" name="Register Order Adjustment">
+      <t t-call="portal.portal_layout">
+        <t t-set="breadcrumbs_searchbar" t-value="True"/>
+          <t t-call="portal.portal_searchbar">
+            <t t-set="title">Order Adjustment</t>
+        </t>
+          <t t-call="vendor_self_service_portal.order_adjustment_step_form2">
+          </t>
+        
+      </t>
+    </template>
+
+    <template id="product_forcast_table" name="Product Forecast">
+      <t t-call="portal.portal_layout">
+        <t t-set="breadcrumbs_searchbar" t-value="True"/>
+          <t t-call="portal.portal_searchbar">
+            <t t-set="title">Product Forecast</t>
+        </t>
+          <t t-call="vendor_self_service_portal.product_forcast_table2">
+          </t>
+        
+      </t>
+    </template>
+
+    <template id="product_forcast_table2" name="Product Forecast">
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+            <div class="row mt16">
+
+                <!-- Page Content -->
+                <div id="forcast_content" class="col-12 col-lg">
+                    <t t-if="not forcast_data">
+                        <p>There are currently no forcast</p>
+                    </t>
+                    <t t-if="forcast_data" t-call="portal.portal_table">
+                        <thead>
+                          <div id="report_type_many" style="display: flex; float: left; margin-top: 15px !important; margin-left: 15px !important;"><input style="cursor: pointer; left: 15px;" type="checkbox" id="excel_report_many" name="excel_report_many"/>&#160;&#160;<label for="excel_report_many">Excel Report</label>&#160;&#160;<input style="cursor: pointer;" type="checkbox" id="pdf_report_many" name="pdf_report_many"/>&#160;&#160;<label for="pdf_report_many">PDF Report</label></div>
+                          <a role="button" id="o_report_portal_generate_mass" data-toggle="modal" style="display: none; float: right;"
+                            href="#" class="btn btn-success"><i class="fa fa-print"></i> Generate Report</a><br/><br/>
+                            <tr class="active">
+                                <th>
+                                  <input type="checkbox" id="check_forcast" name="check_forcast"/>
+                                </th>
+                                <th>Product Name</th>
+                                <th>Expected Quantity</th>
+                                <th class='d-none d-md-table-cell'>Forcast Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="forcast_data" t-as="forcast">
+                                <tr>
+                                    <td>
+                                      <input type="checkbox" class="check_forcast_all" id="check_forcast_all"  t-att-value="forcast.id" t-att-name="forcast.id"/>
+                                    </td>
+                                    <td><span t-field="forcast.product_id.name"/></td>
+                                    <td><span t-field="forcast.expected_quantity"/></td>
+                                    <td class='d-none d-md-table-cell'><span t-field="forcast.forcast_date"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- order adjustment wizard form -->
+    <template id="order_adjustment_step_form2" name="Order Adjustment">
+                    <div class="row justify-content-center">
+                        <form action="" id="sales_order_adjust_request" method="post" enctype="multipart/form-data" style="min-width: 80% !important;">
+                          <fieldset style="border: 1px solid #cbcbcb !important; padding: 20px !important; margin-left: 25% !important; margin-right: 25% !important; margin-top: 40px !important; margin-bottom: 100px !important; max-height: 800px !important; max-width: 50% !important; background: #fff !important;">
+                              <div class="row">
+                                  <div class="col-md-12"
+                                       style="float: none; margin: 0 auto; text-align : center">
+                                      <h3 id="heading" class="text-center">Order Adjustment Form</h3><br/> <br/> 
+                                  </div> 
+                                  <div align="center" class="wrapper">
+                                      <div id="wizard" style="max-height: 800px !important; min-width: 100% !important;">
+                                        <!-- SECTION 1 -->
+                                          <h4></h4>
+                                          <section>  
+                                              <div class="form-row">
+                                                <label for="" style="text-align: left !important;">
+                                                  Sale Order *
+                                                </label>
+                                                  <select style="max-height: 20px !important; text-align: left !important;" name="order_id" id="order_id" class="form-control" required="required">
+                                                    <option value="">Select A Sale Order</option>
+                                                    <t t-foreach="order_id or []" t-as="sale_order">
+                                                            <option t-att-value="sale_order.id">
+                                                                <t t-esc="sale_order.name"/>
+                                                            </option>
+                                                        </t>
+                                                  </select>
+                                              </div>  
+                                              
+                                          </section>
+                                          
+                                        <!-- SECTION 2 -->
+                                          <h4></h4>
+                                          <section> 
+                                              <div class="form-row" style="margin-bottom: 18px">
+                                                <label for="" style="text-align: left !important;">
+                                                  Enter Adjustment to Order
+                                                </label>
+                                                <textarea name="adjustment_detail" id="adjustment_detail" class="form-control" placeholder="Note about your order" style="height: 149px" required="required"></textarea>
+                                              </div>
+                                          </section>
+
+                                          <!-- SECTION 3 -->
+                                          <h4></h4>
+                                            <section> 
+                                              <div class="form-row" style="margin-bottom: 18px">
+                                                <label for="" style="text-align: left !important;">
+                                                  Additinal Comments for Order
+                                                </label>
+                                                <textarea name="comment" id="comment" class="form-control" placeholder="Add Additional Comments" style="height: 149px" required="required"></textarea>
+                                              </div>
+                                          </section>
+
+                                          <!-- SECTION 4 -->
+                                          <h4></h4>
+                                          <section>
+                                          <div class="form-row">
+                                                <i style="font-size: 80px !important; poition:relative; left: 45%; color: #dc3545 !important; text-align: center !important;" class="fa fa-question-circle" /><br/><br/>
+                                                <div class="form-holder" style="text-align: center !important;">
+                                                  <h4>Confirm Your Request now!</h4><br/><br/>
+                                               </div>
+                                              </div> 
+                                          </section>
+                                      </div>
+                                    </div>
+                                  </div>
+                                    </fieldset><br/>
+                                    </form>
+                    </div>
+    </template>
+</odoo>

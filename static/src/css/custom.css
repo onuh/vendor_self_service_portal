@@ -1,0 +1,10 @@
+.o_list_view .o_list_table thead > tr > th[data-name="expected_quantity"] > div > span {
+
+    text-align: left !important;
+}
+
+.css-left{
+
+    text-align: left !important;
+    padding-left: 30px !important;
+}
