@@ -2,20 +2,20 @@
 This is a Vendor Self service portal module for Fatmug Designs. It allows a vendor to view and download a number or all upcoming product demand forcast for the next quater (3 months) in PDF and excel format from their dashboards and also submit an order adjustment request for existing sales order to the procurement team. The procurement team will receive an email each time a portal vendor user submits a sale order adjustment report.
 
 # Module Dependency
-For the module to be installed and function properly, the following dependency must exist already installed. Dependencies are configured in the manifest file ![Manifest File](__manifest__.py)
+For the module to be installed and function properly, the following dependency must exist already installed. Dependencies are configured in the manifest file [Manifest File](__manifest__.py)
 - `Sales Module`.
 - `Portal Module`.
 - `Product Module`
 
 # Third Party Plugins
-Third party css and Javascript plugins were used for this project. This files are found in ![CSS folder](static/src/css) and ![Javascript Folder](static/src/css). The plugins includes:
-- `alertify` which gives alert notification on the portal. Link to the plugin is found here: ![Alertify Plugin](http://alertifyjs.com)
-- `WaitMe` which shows a loader for certain events on portal. We used this instead of odoo's `web.framework`. Link to the plugin is found here: ![WaitMe](https://github.com/vadimsva/waitMe)
-- `Selectize` which allows vendor to quickly search for a sale order in select field during sale order adjustment request submission. Link to the plugin is found here: ![Selectize](https://github.com/selectize)
-- `colorlib-wizard-5 html step template` which allows for stepwise collection of data from vendor during sale order adjustment request. The plugin comes with Jquery steps plugin and other css plugin. Link to the plugin is found here: ![Colorlib-wizard-5](https://colorlib.com/wp/template/colorlib-wizard-5/)
+Third party css and Javascript plugins were used for this project. This files are found in [CSS folder](static/src/css) and [Javascript Folder](static/src/css). The plugins includes:
+- `alertify` which gives alert notification on the portal. Link to the plugin is found here: [Alertify Plugin](http://alertifyjs.com)
+- `WaitMe` which shows a loader for certain events on portal. We used this instead of odoo's `web.framework`. Link to the plugin is found here: [WaitMe](https://github.com/vadimsva/waitMe)
+- `Selectize` which allows vendor to quickly search for a sale order in select field during sale order adjustment request submission. Link to the plugin is found here: [Selectize](https://github.com/selectize)
+- `colorlib-wizard-5 html step template` which allows for stepwise collection of data from vendor during sale order adjustment request. The plugin comes with Jquery steps plugin and other css plugin. Link to the plugin is found here: [Colorlib-wizard-5](https://colorlib.com/wp/template/colorlib-wizard-5/)
 
 # Access Rights and Security rules
-The portal user who is a vendor ordinarily do not have access to certain odoo models. For the module to function properly, read access was granted to the following models. This is implemented in ![Access Rights](security/ir.model.access.csv)
+The portal user who is a vendor ordinarily do not have access to certain odoo models. For the module to function properly, read access was granted to the following models. This is implemented in [Access Rights](security/ir.model.access.csv)
 - `vendor.adjustment.request`.
 - `vendor.forecast`.
 - `product.product`
