@@ -57,7 +57,7 @@ $(function(){
         sortedField: 'text'
     })
 
-// hide and uncheck all checkboxex
+// hide and uncheck all checkboxes
  $('#report_type_many').hide();
  $('#check_forcast').prop('checked', false);
  $('.check_forcast_all').prop('checked', false);
@@ -172,15 +172,6 @@ $(function(){
                     link.download = 'Forcast_Report_'+random+'.xlsx'
                     link.click()
 
-                }else{
-
-                    var blob = new Blob([response], {type: xmlHeaderRequest.getResponseHeader('Content-Type')})
-                    var link = document.createElement('a')
-                    var url = window.URL || window.webkitURL
-                    link.href = url.createObjectURL(blob)
-                    random = Math.floor(Math.random() * 10000)
-                    link.download = 'Forcast_Report_'+random+'.pdf'
-                    link.click()
                 }
                 
             },

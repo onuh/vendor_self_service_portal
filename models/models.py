@@ -89,7 +89,7 @@ class vendorAdjustmentRequestService(models.Model):
     _inherit = ['portal.mixin', 'mail.thread', 'mail.activity.mixin'] # inherit models to be used in chatter to know user that created record
 
     # define fields
-    name = fields.Char("Name", compute='_compute_name', store=True)
+    name = fields.Char("Name")
     order_id = fields.Many2one('sale.order', 'Sale Order')
     adjustment_detail = fields.Text("Adjustment Details")
     comment = fields.Text('Comment')
